@@ -15,7 +15,7 @@ class _WelcomePageState extends State<WelcomePage> {
       body: Column(
         children: [
           Container(
-            height: 400,
+            height: 450,
             width: double.infinity,
             padding: EdgeInsets.all(40),
             decoration: BoxDecoration(
@@ -29,7 +29,7 @@ class _WelcomePageState extends State<WelcomePage> {
               ],
             ),
           ),
-          SizedBox(height: 50),
+          SizedBox(height: 40),
           Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
@@ -41,17 +41,17 @@ class _WelcomePageState extends State<WelcomePage> {
                       "Get The Freshest Fruit Salad Combo",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                        fontSize: 18,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 6),
                 Text(
                   "We deliver the best and freshest fruit salad in town. Order for a combo today!!!",
                   style: TextStyle(fontSize: 16),
                 ),
-                SizedBox(height: 56),
+                SizedBox(height: 80),
 
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
