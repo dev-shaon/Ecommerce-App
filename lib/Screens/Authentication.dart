@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_ecommerce_app/Authentication.dart';
+import 'package:fruits_ecommerce_app/Screens/Home_Screen.dart';
 
-class WelcomePage extends StatefulWidget {
-  const WelcomePage({super.key});
+class Authentication extends StatefulWidget {
+  const Authentication({super.key});
 
   @override
-  State<WelcomePage> createState() => _WelcomePageState();
+  State<Authentication> createState() => _AuthenticationState();
 }
 
-class _WelcomePageState extends State<WelcomePage> {
+class _AuthenticationState extends State<Authentication> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
           Container(
-            height: 450,
+            height: 400,
             width: double.infinity,
-            padding: EdgeInsets.all(40),
             decoration: BoxDecoration(
               color: Colors.orangeAccent,
             ),
@@ -29,7 +28,7 @@ class _WelcomePageState extends State<WelcomePage> {
               ],
             ),
           ),
-          SizedBox(height: 40),
+          SizedBox(height: 56),
           Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
@@ -38,21 +37,34 @@ class _WelcomePageState extends State<WelcomePage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      "Get The Freshest Fruit Salad Combo",
+                      "What is your firstname?",
                       style: TextStyle(
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        fontSize: 18,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 6),
-                Text(
-                  "We deliver the best and freshest fruit salad in town. Order for a combo today!!!",
-                  style: TextStyle(fontSize: 16),
+                SizedBox(height: 16,),
+                TextField(
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  decoration: InputDecoration(
+                    filled: true, 
+                    fillColor: const Color(0xFFE0E0E0),
+                    hintText: "Enter your firstname",
+                    hintStyle: const TextStyle(color: Colors.grey, fontSize: 18),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none
+                    ),
+                  ),
                 ),
-                SizedBox(height: 80),
 
+                SizedBox(height: 40,),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.orange,
@@ -66,11 +78,11 @@ class _WelcomePageState extends State<WelcomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Authentication(),
+                        builder: (context) => HomeScreen(),
                       ),
                     );
                   },
-                  child: Text("Let's Continue", style: TextStyle(fontSize: 18)),
+                  child: Text("Start Ordering", style: TextStyle(fontSize: 18)),
                 ),
               ],
             ),

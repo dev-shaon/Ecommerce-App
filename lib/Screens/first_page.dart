@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_ecommerce_app/welcome_page.dart';
+import 'package:fruits_ecommerce_app/Screens/welcome_page.dart';
 
 class firstpage extends StatefulWidget {
   const firstpage({super.key});

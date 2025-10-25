@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_ecommerce_app/FoodDetails.dart';
-import 'package:fruits_ecommerce_app/favorite_screen.dart';
+import 'package:fruits_ecommerce_app/Screens/FoodDetails.dart';
+import 'package:fruits_ecommerce_app/Screens/basket_screen.dart';
+import 'package:fruits_ecommerce_app/Screens/favorite_screen.dart';
 import 'package:fruits_ecommerce_app/provider.dart';
 import 'package:provider/provider.dart';
-import 'product.dart';
+import '../product.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -90,12 +91,12 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             IconButton(
                               onPressed: () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => BasketScreen(),
-                                //   ),
-                                // );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => BasketScreen(),
+                                  ),
+                                );
                               },
                               icon: const Icon(
                                 Icons.shopping_basket,

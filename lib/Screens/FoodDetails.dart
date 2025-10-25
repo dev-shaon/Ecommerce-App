@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'product.dart';
+import '../product.dart';
 
 class FoodDetails extends StatefulWidget {
   final Product product;
@@ -77,15 +77,46 @@ class _BasketScreenState extends State<FoodDetails> {
                       children: [
                         SizedBox(height: 40),
                         // 🔸 Title and Price Row
+                        Text(
+                          widget.product.title,
+                          style: const TextStyle(
+                            fontSize: 36,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 33),
+
+                        // Counter 
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              widget.product.title,
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            Row(
+                              children: [
+                                _quantityButton(Icons.remove, () {
+                                  if (quantity > 1) {
+                                    setState(() {
+                                      quantity--;
+                                    });
+                                  }
+                                }),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 12,
+                                  ),
+                                  child: Text(
+                                    "$quantity",
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                _quantityButton(Icons.add, () {
+                                  setState(() {
+                                    quantity++;
+                                  });
+                                }),
+                              ],
                             ),
                             Text(
                               widget.product.price,
@@ -97,38 +128,8 @@ class _BasketScreenState extends State<FoodDetails> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 33),
 
-                        // 🔸 Quantity Selector
-                        Row(
-                          children: [
-                            _quantityButton(Icons.remove, () {
-                              if (quantity > 1) {
-                                setState(() {
-                                  quantity--;
-                                });
-                              }
-                            }),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                              ),
-                              child: Text(
-                                "$quantity",
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            _quantityButton(Icons.add, () {
-                              setState(() {
-                                quantity++;
-                              });
-                            }),
-                          ],
-                        ),
-                        const SizedBox(height: 64),
+                        SizedBox(height: 64),
 
                         // 🔸 Description
                         const Text(
