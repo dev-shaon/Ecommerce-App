@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_ecommerce_app/basketScreen.dart';
+import 'package:fruits_ecommerce_app/FoodDetails.dart';
 import 'package:fruits_ecommerce_app/favorite_screen.dart';
 import 'package:fruits_ecommerce_app/provider.dart';
 import 'package:provider/provider.dart';
@@ -23,9 +23,9 @@ class HomeScreen extends StatelessWidget {
       price: "\$6.99",
     ),
   ];
-    
-    //list for tabber view 
-    final List<Product> Mproduct = [
+
+  //list for tabber view
+  final List<Product> Mproduct = [
     Product(
       id: 3,
       title: "Green Salad",
@@ -90,12 +90,12 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             IconButton(
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => BasketScreen(),
-                                  ),
-                                );
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) => BasketScreen(),
+                                //   ),
+                                // );
                               },
                               icon: const Icon(
                                 Icons.shopping_basket,
@@ -212,7 +212,10 @@ class HomeScreen extends StatelessWidget {
                     Tab(text: "Top"),
                   ],
                   indicator: UnderlineTabIndicator(
-                    borderSide: BorderSide(width: 4.0, color: Colors.deepOrange),
+                    borderSide: BorderSide(
+                      width: 4.0,
+                      color: Colors.deepOrange,
+                    ),
                     insets: EdgeInsets.only(left: 0, right: 20),
                   ),
                 ),
@@ -294,7 +297,7 @@ class HomeScreen extends StatelessWidget {
                           },
                         ),
 
-                        //  4th Tab 
+                        //  4th Tab
                         GridView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: products.length,
@@ -405,7 +408,14 @@ class ProductCard extends StatelessWidget {
                   backgroundColor: Colors.orange,
                   radius: 18,
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FoodDetails(product: product),
+                        ),
+                      );
+                    },
                     icon: const Icon(Icons.add, color: Colors.white),
                     iconSize: 20,
                   ),
@@ -494,7 +504,14 @@ class MultipleProduct extends StatelessWidget {
                   backgroundColor: Colors.orange,
                   radius: 18,
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FoodDetails(product: product),
+                        ),
+                      );
+                    },
                     icon: const Icon(Icons.add, color: Colors.white),
                     iconSize: 20,
                   ),
