@@ -11,7 +11,7 @@ class FoodDetails extends StatefulWidget {
 }
 
 class _BasketScreenState extends State<FoodDetails> {
-  int quantity = 1;
+  int count = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -93,9 +93,9 @@ class _BasketScreenState extends State<FoodDetails> {
                             Row(
                               children: [
                                 _quantityButton(Icons.remove, () {
-                                  if (quantity > 1) {
+                                  if (count > 1) {
                                     setState(() {
-                                      quantity--;
+                                      count--;
                                     });
                                   }
                                 }),
@@ -104,7 +104,7 @@ class _BasketScreenState extends State<FoodDetails> {
                                     horizontal: 12,
                                   ),
                                   child: Text(
-                                    "$quantity",
+                                    "$count",
                                     style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
@@ -113,13 +113,13 @@ class _BasketScreenState extends State<FoodDetails> {
                                 ),
                                 _quantityButton(Icons.add, () {
                                   setState(() {
-                                    quantity++;
+                                    count++;
                                   });
                                 }),
                               ],
                             ),
                             Text(
-                              widget.product.price,
+                               "\$ ${(widget.product.price * count).toStringAsFixed(2)}", 
                               style: const TextStyle(
                                 fontSize: 22,
                                 color: Colors.orange,

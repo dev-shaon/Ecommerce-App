@@ -15,13 +15,13 @@ class HomeScreen extends StatelessWidget {
       id: 1,
       title: "Cappuccino",
       imageUrl: "assets/images/f4.png",
-      price: "\$4.99",
+      price: 4.99,
     ),
     Product(
       id: 2,
       title: "Fruit Salad",
       imageUrl: "assets/images/f5.png",
-      price: "\$6.99",
+      price: 6.99,
     ),
   ];
 
@@ -31,19 +31,19 @@ class HomeScreen extends StatelessWidget {
       id: 3,
       title: "Green Salad",
       imageUrl: "assets/images/f4.png",
-      price: "\$10.99",
+      price: 10.99,
     ),
     Product(
       id: 4,
       title: "Italian  Salad",
       imageUrl: "assets/images/f5.png",
-      price: "\$6.99",
+      price: 6.99,
     ),
     Product(
       id: 5,
       title: "Caesar Salad",
       imageUrl: "assets/images/f5.png",
-      price: "\$2.99",
+      price: 2.99,
     ),
   ];
 
@@ -112,7 +112,7 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
 
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
 
                 const Align(
                   alignment: Alignment.centerLeft,
@@ -122,7 +122,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
 
                 Row(
                   children: [
@@ -136,9 +136,9 @@ class HomeScreen extends StatelessWidget {
                         decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.search),
                           filled: true,
-                          fillColor: const Color.fromARGB(255, 230, 229, 229),
+                          fillColor: Color.fromARGB(255, 230, 229, 229),
                           hintText: "Search for fruit salad combos",
-                          hintStyle: const TextStyle(
+                          hintStyle: TextStyle(
                             color: Color.fromARGB(255, 100, 99, 99),
                             fontSize: 14,
                           ),
@@ -149,8 +149,8 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Icon(Icons.tune, size: 40),
                     ),
                   ],
@@ -212,7 +212,7 @@ class HomeScreen extends StatelessWidget {
                     Tab(text: "New combo"),
                     Tab(text: "Top"),
                   ],
-                  indicator: UnderlineTabIndicator(
+                  indicator: const UnderlineTabIndicator(
                     borderSide: BorderSide(
                       width: 4.0,
                       color: Colors.deepOrange,
@@ -220,7 +220,7 @@ class HomeScreen extends StatelessWidget {
                     insets: EdgeInsets.only(left: 0, right: 20),
                   ),
                 ),
-                SizedBox(height: 6),
+                const SizedBox(height: 6),
 
                 Expanded(
                   child: Expanded(
@@ -350,7 +350,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 255, 243, 207),
+        color: const Color.fromARGB(255, 255, 243, 207),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Stack(
@@ -397,7 +397,7 @@ class ProductCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      product.price,
+                      "\$${product.price.toStringAsFixed(2)}", // ✅ Fixed
                       style: const TextStyle(
                         color: Colors.orange,
                         fontSize: 18,
@@ -446,7 +446,7 @@ class MultipleProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 255, 243, 207),
+        color: const Color.fromARGB(255, 255, 243, 207),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Stack(
@@ -493,7 +493,7 @@ class MultipleProduct extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      product.price,
+                      "\$${product.price.toStringAsFixed(2)}", // ✅ Fixed
                       style: const TextStyle(
                         color: Colors.orange,
                         fontSize: 18,

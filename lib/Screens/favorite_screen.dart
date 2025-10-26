@@ -15,7 +15,6 @@ class FavoriteScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            // 🔹 Custom Orange Header
             Padding(
               padding: const EdgeInsets.all(12),
               child: Align(
@@ -39,8 +38,9 @@ class FavoriteScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
-             Text(
+
+            const SizedBox(height: 20),
+            const Text(
               "Favorite Items",
               style: TextStyle(
                 color: Colors.white,
@@ -50,7 +50,7 @@ class FavoriteScreen extends StatelessWidget {
             ),
             const SizedBox(height: 40),
 
-            // 🔹 White Container for List
+            //Container for List
             Expanded(
               child: Container(
                 width: double.infinity,
@@ -61,8 +61,8 @@ class FavoriteScreen extends StatelessWidget {
                     topRight: Radius.circular(30),
                   ),
                 ),
-                child: favoriteProducts.isEmpty
-                    ? const Center(
+                child: favoriteProducts.isEmpty?  
+                Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -110,7 +110,7 @@ class FavoriteScreen extends StatelessWidget {
                                 ),
                               ),
                               subtitle: Text(
-                                product.price,
+                                product.price.toString(), 
                                 style: const TextStyle(color: Colors.orange),
                               ),
                               trailing: IconButton(
