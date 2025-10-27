@@ -20,7 +20,6 @@ class _BasketScreenState extends State<FoodDetails> {
       body: SafeArea(
         child: Column(
           children: [
-            // 🔹 Back Button
             Padding(
               padding: const EdgeInsets.all(12),
               child: Align(
@@ -45,7 +44,6 @@ class _BasketScreenState extends State<FoodDetails> {
               ),
             ),
 
-            // 🔹 Product Image
             Hero(
               tag: widget.product.id,
               child: Image.asset(
@@ -58,7 +56,6 @@ class _BasketScreenState extends State<FoodDetails> {
 
             const SizedBox(height: 40),
 
-            // 🔹 White Container for Details
             Expanded(
               child: Container(
                 width: double.infinity,
@@ -76,7 +73,6 @@ class _BasketScreenState extends State<FoodDetails> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: 40),
-                        // 🔸 Title and Price Row
                         Text(
                           widget.product.title,
                           style: const TextStyle(
@@ -131,7 +127,7 @@ class _BasketScreenState extends State<FoodDetails> {
 
                         SizedBox(height: 64),
 
-                        // 🔸 Description
+                        // Description
                         const Text(
                           "One Pack Contains:",
                           style: TextStyle(
@@ -152,7 +148,7 @@ class _BasketScreenState extends State<FoodDetails> {
 
                         const SizedBox(height: 66),
 
-                        // 🔸 Add to Basket Button
+                        // Add to Basket Button
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -201,7 +197,7 @@ class _BasketScreenState extends State<FoodDetails> {
     );
   }
 
-  // 🔹 Quantity Button Widget
+  //Quantity Button Widget
   Widget _quantityButton(IconData icon, VoidCallback onPressed) {
     return Container(
       decoration: BoxDecoration(

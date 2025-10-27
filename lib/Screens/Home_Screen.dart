@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_ecommerce_app/Screens/FoodDetails.dart';
 import 'package:fruits_ecommerce_app/Screens/basket_screen.dart';
 import 'package:fruits_ecommerce_app/Screens/favorite_screen.dart';
+import 'package:fruits_ecommerce_app/Wigets/NonRecommended.dart';
+import 'package:fruits_ecommerce_app/Wigets/multiproduct.dart';
+import 'package:fruits_ecommerce_app/Wigets/productcard.dart';
+import 'package:fruits_ecommerce_app/catagory_modle.dart';
 import 'package:fruits_ecommerce_app/provider.dart';
 import 'package:provider/provider.dart';
 import '../product.dart';
@@ -9,46 +12,73 @@ import '../product.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  //list for Recommended food
+  int selectedcata = 1;
+
+  final List<Category> categorys = [
+    Category(id: 1, name: 'Hottest'),
+    Category(id: 2, name: "Popular"),
+    Category(id: 3, name: "New combo"),
+    Category(id: 4, name: "Top"),
+  ];
+
+  // list of products
   final List<Product> products = [
     Product(
       id: 1,
       title: "Cappuccino",
       imageUrl: "assets/images/f4.png",
       price: 4.99,
+      catagoryId: 1,
+      isRecommendet: true,
     ),
     Product(
       id: 2,
       title: "Fruit Salad",
       imageUrl: "assets/images/f5.png",
       price: 6.99,
+      catagoryId: 1,
+      isRecommendet: true,
     ),
-  ];
-
-  //list for tabber view
-  final List<Product> Mproduct = [
     Product(
       id: 3,
       title: "Green Salad",
       imageUrl: "assets/images/f4.png",
       price: 10.99,
+      catagoryId: 2,
+      isRecommendet: false,
     ),
     Product(
       id: 4,
-      title: "Italian  Salad",
+      title: "Italian Salad",
       imageUrl: "assets/images/f5.png",
       price: 6.99,
+      catagoryId: 3,
+      isRecommendet: false,
     ),
     Product(
       id: 5,
       title: "Caesar Salad",
       imageUrl: "assets/images/f5.png",
       price: 2.99,
+      catagoryId: 1,
+      isRecommendet: false,
     ),
   ];
 
+  List<Product> getRecomne() {
+    return products.where((f) => f.isRecommendet == true).toList();
+  }
+
+  List<Product> getCatagoryProduct(int catId) {
+    return products.where((f) => f.catagoryId == catId).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final recomendetProduts = getRecomne(); // ✅ only recommended
+    final nonRecomendetProducts = products
+        .where((f) => f.isRecommendet == false)
+        .toList(); // ✅ only non-recommended
     final favoriteProvider = Provider.of<FavoriteProvider>(context);
 
     return DefaultTabController(
@@ -61,10 +91,10 @@ class HomeScreen extends StatelessWidget {
               children: [
                 const SizedBox(height: 6),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    const Icon(Icons.menu, color: Colors.black, size: 36),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
                           children: [
@@ -167,10 +197,10 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 26),
 
-                // GridView use kora
+                // 🔹 Only recommended products
                 Flexible(
                   child: GridView.builder(
-                    itemCount: products.length,
+                    itemCount: recomendetProduts.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
@@ -179,7 +209,7 @@ class HomeScreen extends StatelessWidget {
                           childAspectRatio: 3 / 4,
                         ),
                     itemBuilder: (context, index) {
-                      final product = products[index];
+                      final product = recomendetProduts[index];
                       final isFav = favoriteProvider.isFavorite(product);
                       return ProductCard(
                         product: product,
@@ -222,305 +252,21 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
 
+                // 🔹 Only non-recommended products inside tabs
                 Expanded(
-                  child: Expanded(
-                    child: TabBarView(
-                      children: [
-                        //1st Tab
-                        GridView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: Mproduct.length,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 1,
-                                mainAxisSpacing: 10,
-                                crossAxisSpacing: 10,
-                                childAspectRatio: 1.4,
-                              ),
-                          itemBuilder: (context, index) {
-                            final product = Mproduct[index];
-                            final isFav = favoriteProvider.isFavorite(product);
-                            return MultipleProduct(
-                              product: product,
-                              isFavorite: isFav,
-                              onFavoritePressed: () {
-                                favoriteProvider.toggleFavorite(product);
-                              },
-                            );
-                          },
-                        ),
-
-                        // 2nd Tab
-                        GridView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: products.length,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 1,
-                                mainAxisSpacing: 10,
-                                crossAxisSpacing: 10,
-                                childAspectRatio: 1.4,
-                              ),
-                          itemBuilder: (context, index) {
-                            final product = products[index];
-                            final isFav = favoriteProvider.isFavorite(product);
-                            return MultipleProduct(
-                              product: product,
-                              isFavorite: isFav,
-                              onFavoritePressed: () {
-                                favoriteProvider.toggleFavorite(product);
-                              },
-                            );
-                          },
-                        ),
-
-                        // 3rd Tab
-                        GridView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: Mproduct.length,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 1,
-                                mainAxisSpacing: 10,
-                                crossAxisSpacing: 10,
-                                childAspectRatio: 1.4,
-                              ),
-                          itemBuilder: (context, index) {
-                            final product = Mproduct[index];
-                            final isFav = favoriteProvider.isFavorite(product);
-                            return MultipleProduct(
-                              product: product,
-                              isFavorite: isFav,
-                              onFavoritePressed: () {
-                                favoriteProvider.toggleFavorite(product);
-                              },
-                            );
-                          },
-                        ),
-
-                        //  4th Tab
-                        GridView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: products.length,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 1,
-                                mainAxisSpacing: 10,
-                                crossAxisSpacing: 10,
-                                childAspectRatio: 1.4,
-                              ),
-                          itemBuilder: (context, index) {
-                            final product = products[index];
-                            final isFav = favoriteProvider.isFavorite(product);
-                            return MultipleProduct(
-                              product: product,
-                              isFavorite: isFav,
-                              onFavoritePressed: () {
-                                favoriteProvider.toggleFavorite(product);
-                              },
-                            );
-                          },
-                        ),
-                      ],
-                    ),
+                  child: TabBarView(
+                    children: [
+                      NonRecommendedGrid(products: nonRecomendetProducts),
+                      NonRecommendedGrid(products: recomendetProduts),
+                      NonRecommendedGrid(products: nonRecomendetProducts),
+                      NonRecommendedGrid(products: nonRecomendetProducts),
+                    ],
                   ),
                 ),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class ProductCard extends StatelessWidget {
-  final Product product;
-  final bool isFavorite;
-  final VoidCallback onFavoritePressed;
-
-  const ProductCard({
-    super.key,
-    required this.product,
-    required this.isFavorite,
-    required this.onFavoritePressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 255, 243, 207),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Stack(
-        children: [
-          Positioned.fill(
-            top: 20,
-            bottom: 60,
-            child: Center(
-              child: Image.asset(
-                product.imageUrl,
-                width: 100,
-                height: 100,
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-          Positioned(
-            top: 10,
-            right: 10,
-            child: IconButton(
-              icon: Icon(
-                isFavorite ? Icons.favorite : Icons.favorite_border,
-                color: isFavorite ? Colors.orange : Colors.black,
-                size: 34,
-              ),
-              onPressed: onFavoritePressed,
-            ),
-          ),
-          Positioned(
-            bottom: 10,
-            left: 10,
-            right: 10,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      product.title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                    Text(
-                      "\$${product.price.toStringAsFixed(2)}", // ✅ Fixed
-                      style: const TextStyle(
-                        color: Colors.orange,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ],
-                ),
-                CircleAvatar(
-                  backgroundColor: Colors.orange,
-                  radius: 18,
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => FoodDetails(product: product),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.add, color: Colors.white),
-                    iconSize: 20,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class MultipleProduct extends StatelessWidget {
-  final Product product;
-  final bool isFavorite;
-  final VoidCallback onFavoritePressed;
-
-  const MultipleProduct({
-    super.key,
-    required this.product,
-    required this.isFavorite,
-    required this.onFavoritePressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 255, 243, 207),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Stack(
-        children: [
-          Positioned.fill(
-            top: 10,
-            bottom: 60,
-            child: Center(
-              child: Image.asset(
-                product.imageUrl,
-                width: 100,
-                height: 100,
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-          Positioned(
-            top: 7,
-            right: 7,
-            child: IconButton(
-              icon: Icon(
-                isFavorite ? Icons.favorite : Icons.favorite_border,
-                color: isFavorite ? Colors.orange : Colors.black,
-                size: 34,
-              ),
-              onPressed: onFavoritePressed,
-            ),
-          ),
-          Positioned(
-            bottom: 10,
-            left: 10,
-            right: 10,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      product.title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                    Text(
-                      "\$${product.price.toStringAsFixed(2)}", // ✅ Fixed
-                      style: const TextStyle(
-                        color: Colors.orange,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ],
-                ),
-                CircleAvatar(
-                  backgroundColor: Colors.orange,
-                  radius: 18,
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => FoodDetails(product: product),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.add, color: Colors.white),
-                    iconSize: 20,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }
