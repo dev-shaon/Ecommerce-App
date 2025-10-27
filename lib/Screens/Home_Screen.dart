@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fruits_ecommerce_app/Screens/basket_screen.dart';
 import 'package:fruits_ecommerce_app/Screens/favorite_screen.dart';
 import 'package:fruits_ecommerce_app/Wigets/NonRecommended.dart';
-import 'package:fruits_ecommerce_app/Wigets/multiproduct.dart';
 import 'package:fruits_ecommerce_app/Wigets/productcard.dart';
-import 'package:fruits_ecommerce_app/catagory_modle.dart';
+import 'package:fruits_ecommerce_app/catagory_details.dart';
 import 'package:fruits_ecommerce_app/provider.dart';
 import 'package:provider/provider.dart';
 import '../product.dart';
@@ -75,10 +74,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final recomendetProduts = getRecomne(); // ✅ only recommended
-    final nonRecomendetProducts = products
-        .where((f) => f.isRecommendet == false)
-        .toList(); // ✅ only non-recommended
+
+    final recomendetProduts = getRecomne(); //////////////////////////////////////////////////////////////only recommended
+
+    final nonRecomendetProducts = products.where((f) => f.isRecommendet == false).toList(); ///////////// only non-recommended
+
     final favoriteProvider = Provider.of<FavoriteProvider>(context);
 
     return DefaultTabController(
@@ -91,10 +91,13 @@ class HomeScreen extends StatelessWidget {
               children: [
                 const SizedBox(height: 6),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Row(children: [
+                      IconButton(onPressed: (){}, icon: Icon(Icons.sort,size: 40,))
+                    ],),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Column(
                           children: [
@@ -197,7 +200,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 26),
 
-                // 🔹 Only recommended products
+                ////////////////////////////////////////////////////////////////////////////// Only recommended products
                 Flexible(
                   child: GridView.builder(
                     itemCount: recomendetProduts.length,
@@ -252,7 +255,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
 
-                // 🔹 Only non-recommended products inside tabs
+                ///////////////////////////////////////////////////////////////////////////////// Only nonRecommended products tabs
                 Expanded(
                   child: TabBarView(
                     children: [
