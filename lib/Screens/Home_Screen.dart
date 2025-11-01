@@ -3,22 +3,12 @@ import 'package:fruits_ecommerce_app/Screens/basket_screen.dart';
 import 'package:fruits_ecommerce_app/Screens/favorite_screen.dart';
 import 'package:fruits_ecommerce_app/Wigets/NonRecommended.dart';
 import 'package:fruits_ecommerce_app/Wigets/productcard.dart';
-import 'package:fruits_ecommerce_app/catagory_details.dart';
 import 'package:fruits_ecommerce_app/provider.dart';
 import 'package:provider/provider.dart';
 import '../product.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-
-  int selectedcata = 1;
-
-  final List<Category> categorys = [
-    Category(id: 1, name: 'Hottest'),
-    Category(id: 2, name: "Popular"),
-    Category(id: 3, name: "New combo"),
-    Category(id: 4, name: "Top"),
-  ];
 
   // list of products
   final List<Product> products = [
@@ -41,7 +31,7 @@ class HomeScreen extends StatelessWidget {
     Product(
       id: 3,
       title: "Green Salad",
-      imageUrl: "assets/images/f4.png",
+      imageUrl: "assets/images/f6.png",
       price: 10.99,
       catagoryId: 2,
       isRecommendet: false,
@@ -49,7 +39,7 @@ class HomeScreen extends StatelessWidget {
     Product(
       id: 4,
       title: "Italian Salad",
-      imageUrl: "assets/images/f5.png",
+      imageUrl: "assets/images/f8.png",
       price: 6.99,
       catagoryId: 3,
       isRecommendet: false,
@@ -62,22 +52,27 @@ class HomeScreen extends StatelessWidget {
       catagoryId: 1,
       isRecommendet: false,
     ),
+    Product(
+      id: 6,
+      title: "Caesar Salad",
+      imageUrl: "assets/images/f7.png",
+      price: 2.99,
+      catagoryId: 1,
+      isRecommendet: false,
+    ),
   ];
 
   List<Product> getRecomne() {
     return products.where((f) => f.isRecommendet == true).toList();
   }
 
-  List<Product> getCatagoryProduct(int catId) {
-    return products.where((f) => f.catagoryId == catId).toList();
-  }
 
   @override
   Widget build(BuildContext context) {
 
-    final recomendetProduts = getRecomne(); //////////////////////////////////////////////////////////////only recommended
+    final recomendetProduts =getRecomne(); ////////////////////////////////////////only recommended
 
-    final nonRecomendetProducts = products.where((f) => f.isRecommendet == false).toList(); ///////////// only non-recommended
+    final nonRecomendetProducts = products.where((f) => f.isRecommendet == false).toList(); ///// only non-recommended
 
     final favoriteProvider = Provider.of<FavoriteProvider>(context);
 
@@ -93,9 +88,14 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(children: [
-                      IconButton(onPressed: (){}, icon: Icon(Icons.sort,size: 40,))
-                    ],),
+                    Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.sort, size: 40),
+                        ),
+                      ],
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -255,7 +255,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
 
-                ///////////////////////////////////////////////////////////////////////////////// Only nonRecommended products tabs
+                //////////////////////////////////////////////// Only nonRecommended products tabs
                 Expanded(
                   child: TabBarView(
                     children: [

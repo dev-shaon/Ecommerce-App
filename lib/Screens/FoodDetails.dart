@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_ecommerce_app/Screens/basket_screen.dart';
 import '../product.dart';
 
 class FoodDetails extends StatefulWidget {
@@ -166,7 +167,9 @@ class _BasketScreenState extends State<FoodDetails> {
                             ),
 
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>BasketScreen()));
+                              },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.orange,
                                 shape: RoundedRectangleBorder(
