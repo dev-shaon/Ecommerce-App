@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_ecommerce_app/Screens/Home_Screen.dart';
 
 class OderComplete extends StatelessWidget {
   const OderComplete({super.key});
@@ -25,7 +26,9 @@ class OderComplete extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+              },
               child: Text(
                 "Track order",
                 style: TextStyle(fontSize: 18, color: Colors.white),

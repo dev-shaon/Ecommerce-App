@@ -17,3 +17,4 @@ class Product {
      this.isRecommendet=false,
   });
 }
+List<Product> basketItems = [];

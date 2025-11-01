@@ -18,7 +18,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 255, 243, 207),
+        color: const Color.fromARGB(255, 254, 247, 226),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Stack(
@@ -65,7 +65,7 @@ class ProductCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "\$${product.price.toStringAsFixed(2)}",
+                      "₦ ${product.price.toStringAsFixed(2)}",
                       style: const TextStyle(
                         color: Colors.orange,
                         fontSize: 18,

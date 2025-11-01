@@ -83,7 +83,7 @@ class _BasketScreenState extends State<FoodDetails> {
                         ),
                         const SizedBox(height: 33),
 
-                        // Counter 
+                        // Counter
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -116,7 +116,7 @@ class _BasketScreenState extends State<FoodDetails> {
                               ],
                             ),
                             Text(
-                               "\$ ${(widget.product.price * count).toStringAsFixed(2)}", 
+                              "₦ ${(widget.product.price * count).toStringAsFixed(2)}",
                               style: const TextStyle(
                                 fontSize: 22,
                                 color: Colors.orange,
@@ -168,7 +168,25 @@ class _BasketScreenState extends State<FoodDetails> {
 
                             ElevatedButton(
                               onPressed: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>BasketScreen()));
+                                basketItems.add(
+                                  widget.product,
+                                ); // ✅ Add product in basket
+
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    backgroundColor: Colors.green,
+                                    content: Text(
+                                      "${widget.product.title} added to basket",
+                                    ),
+                                  ),
+                                );
+
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => BasketScreen(),
+                                  ),
+                                );
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.orange,

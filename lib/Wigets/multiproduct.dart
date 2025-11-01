@@ -66,7 +66,7 @@ class MultipleProduct extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "\$${product.price.toStringAsFixed(2)}", // ✅ Fixed
+                      "₦ ${product.price.toStringAsFixed(2)}", // ✅ Fixed
                       style: const TextStyle(
                         color: Colors.orange,
                         fontSize: 18,
