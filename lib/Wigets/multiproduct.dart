@@ -19,7 +19,7 @@ class MultipleProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 255, 243, 207),
+        color: const Color.fromARGB(255, 255, 240, 219),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Stack(
