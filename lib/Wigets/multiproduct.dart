@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_ecommerce_app/Screens/FoodDetails.dart';
-import 'package:fruits_ecommerce_app/product.dart';
+import 'package:fruits_ecommerce_app/Model_class/product.dart';
 
 
 class MultipleProduct extends StatelessWidget {

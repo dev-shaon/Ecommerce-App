@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_ecommerce_app/Provider/User_provider.dart';
+import 'package:fruits_ecommerce_app/Provider/provider.dart';
 import 'package:fruits_ecommerce_app/Screens/first_page.dart';
-import 'package:fruits_ecommerce_app/provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => FavoriteProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => FavoriteProvider()),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+      ],
       child: const MyApp(),
     ),
   );

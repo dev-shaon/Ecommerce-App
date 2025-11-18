@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_ecommerce_app/Provider/User_provider.dart';
 import 'package:fruits_ecommerce_app/Screens/basket_screen.dart';
 import 'package:fruits_ecommerce_app/Screens/favorite_screen.dart';
 import 'package:fruits_ecommerce_app/Wigets/NonRecommended.dart';
 import 'package:fruits_ecommerce_app/Wigets/productcard.dart';
-import 'package:fruits_ecommerce_app/provider.dart';
+import 'package:fruits_ecommerce_app/Provider/provider.dart';
 import 'package:provider/provider.dart';
-import '../product.dart';
+import '../Model_class/product.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -75,6 +76,7 @@ class HomeScreen extends StatelessWidget {
     final nonRecomendetProducts = products.where((f) => f.isRecommendet == false).toList(); ///// only non-recommended
 
     final favoriteProvider = Provider.of<FavoriteProvider>(context);
+      final userProvider = Provider.of<UserProvider>(context);
 
     return DefaultTabController(
       length: 4,
@@ -147,11 +149,11 @@ class HomeScreen extends StatelessWidget {
 
                 const SizedBox(height: 24),
 
-                const Align(
+                Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Hello Shaon, What fruit salad \ncombo do you want today?",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    "Hello ${userProvider.username}, What fruit salad \ncombo do you want today?",
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
 

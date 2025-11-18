@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_ecommerce_app/Wigets/multiproduct.dart';
-import 'package:fruits_ecommerce_app/product.dart';
-import 'package:fruits_ecommerce_app/provider.dart';
+import 'package:fruits_ecommerce_app/Model_class/product.dart';
+import 'package:fruits_ecommerce_app/Provider/provider.dart';
 import 'package:provider/provider.dart';
 
 class NonRecommendedGrid extends StatelessWidget {

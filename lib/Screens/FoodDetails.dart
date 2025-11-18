@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_ecommerce_app/Screens/basket_screen.dart';
-import '../product.dart';
+import '../Model_class/product.dart';
 
 class FoodDetails extends StatefulWidget {
   final Product product;

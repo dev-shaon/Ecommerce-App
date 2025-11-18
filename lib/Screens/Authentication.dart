@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_ecommerce_app/Provider/User_provider.dart';
 import 'package:fruits_ecommerce_app/Screens/Home_Screen.dart';
+import 'package:provider/provider.dart';
 
 class Authentication extends StatefulWidget {
   const Authentication({super.key});
@@ -9,8 +11,12 @@ class Authentication extends StatefulWidget {
 }
 
 class _AuthenticationState extends State<Authentication> {
+
+  TextEditingController userNameController =TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       body: Column(
         children: [
@@ -47,6 +53,7 @@ class _AuthenticationState extends State<Authentication> {
                 ),
                 SizedBox(height: 16,),
                 TextField(
+                  controller: userNameController,
                   style: const TextStyle(
                     fontSize: 18,
                     color: Colors.black,
@@ -75,6 +82,9 @@ class _AuthenticationState extends State<Authentication> {
                     ),
                   ),
                   onPressed: () {
+                    context.read<UserProvider>().changeUserName(newUserName: userNameController.text);
+                    FocusManager.instance.primaryFocus?.unfocus();
+                    userNameController.clear();
                     Navigator.push(
                       context,
                       MaterialPageRoute(

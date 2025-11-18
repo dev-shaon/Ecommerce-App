@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_ecommerce_app/provider.dart';
+import 'package:fruits_ecommerce_app/Provider/provider.dart';
 import 'package:provider/provider.dart';
 
 class FavoriteScreen extends StatelessWidget {

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'product.dart';
+import '../Model_class/product.dart';
 
 class FavoriteProvider extends ChangeNotifier {
+
+
   final List<Product> _favoriteItems = [];
 
   List<Product> get favoriteProduct => _favoriteItems;
@@ -28,3 +30,4 @@ class FavoriteProvider extends ChangeNotifier {
     }
   }
 }
+

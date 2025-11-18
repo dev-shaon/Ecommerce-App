@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_ecommerce_app/Screens/Oder_Complete.dart';
-import 'package:fruits_ecommerce_app/product.dart';
+import 'package:fruits_ecommerce_app/Model_class/product.dart';
 
 class BasketScreen extends StatefulWidget {
   @override
